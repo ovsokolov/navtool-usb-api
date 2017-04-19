@@ -41,6 +41,18 @@ module V1
       @navtooldevice.destroy
     end
 
+    def obdupdate
+      mcu_serial = params[:mcu_id]
+      navtooldevice = Navtooldevice.find(mcu_serial)
+      attr_hash = {"sw_feature_cnt"=>navtooldevice.sw_feature_cnt + 1}
+      if navtooldevice.sw_feature_cnt == 0
+        experation_date = Time.now + (60*60*24*3) #add 3 days
+        attr_hash.merge!({"sw_feature_exp_date"=>experation_date.strftime("%d/%m/%Y")})
+      end
+      navtooldevice.update_attributes(attr_hash)
+      render json: navtooldevice
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_navtooldevice
@@ -50,7 +62,7 @@ module V1
       # Only allow a trusted parameter "white list" through.
       def navtooldevice_params
         params.fetch(:navtooldevice, {})
-        params.permit(:id, :sw_id, :sw_build, :vehicle_make, :vehicle_model)
+        params.permit(:id, :sw_id, :sw_build, :vehicle_make, :vehicle_model, :mcu_id)
       end
   end
 end
