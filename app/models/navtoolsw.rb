@@ -8,4 +8,6 @@ class Navtoolsw < ApplicationRecord
   scope :mfg_id, -> (mfg_id) { where mfg_id: mfg_id }
   scope :manual_transmission, ->  { where vehicle_transmission: 1 }
   scope :automatic_transmission, ->  { where vehicle_transmission: [2,3] }
+  scope :sw_id, ->  (sw_id) { where sw_id: sw_id }
+  scope :sw_build, -> (sw_build) { where sw_build: sw_build }
 end
