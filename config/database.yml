@@ -35,3 +35,4 @@ production:
   password: <%= ENV["PR_DB_PASSWORD"] %>
   host: <%= ENV["PR_DB_SERVER"] %>
   read_timeout: 5
+  write_timeout: 5
