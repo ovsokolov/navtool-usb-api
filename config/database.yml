@@ -11,6 +11,7 @@ default: &default
 
 
 development:
+  #uri: = <%= ENV["CLEARDB_DATABASE_URL"] %>
   adapter: mysql2
   encoding: utf8
   database: <%= ENV["DEV_DB_NAME"] %>
@@ -33,3 +34,4 @@ production:
   username: <%= ENV["PR_DB_USERNAME"] %>
   password: <%= ENV["PR_DB_PASSWORD"] %>
   host: <%= ENV["PR_DB_SERVER"] %>
+  read_timeout: 5
