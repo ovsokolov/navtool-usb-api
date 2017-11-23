@@ -15,4 +15,9 @@ Rails.application.routes.draw do
     get 'ftpload' => 'navtoolsws#ftpload'
     get 'obdupdate' => 'navtooldevices#obdupdate'
   end
+  get 'bc_make' => 'bcdropdownsearchs#bc_make'
+  get 'bc_model' => 'bcdropdownsearchs#bc_model'
+  get 'bc_years' => 'bcdropdownsearchs#bc_years'
+  get 'bc_options' => 'bcdropdownsearchs#bc_options'
+  get 'bc_group_url' => 'bcdropdownsearchs#bc_group_url'
 end

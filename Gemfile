@@ -41,3 +41,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mysql2', '~> 0.4.5'
 gem 'figaro'
+gem 'rack-cors', :require => 'rack/cors'
