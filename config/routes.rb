@@ -19,5 +19,4 @@ Rails.application.routes.draw do
   get 'bc_model' => 'bcdropdownsearchs#bc_model'
   get 'bc_years' => 'bcdropdownsearchs#bc_years'
   get 'bc_options' => 'bcdropdownsearchs#bc_options'
-  get 'bc_group_url' => 'bcdropdownsearchs#bc_group_url'
 end

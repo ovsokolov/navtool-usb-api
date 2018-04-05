@@ -16,7 +16,7 @@ class BcdropdownsearchsController < ApplicationController
     @bcdropdownsearch = Bcdropdownsearch.where(nil)
     @bcdropdownsearch = @bcdropdownsearch.vehicle_make(params[:vehicle_make]) if params[:vehicle_make].present?
     @bcdropdownsearch = @bcdropdownsearch.vehicle_model(params[:vehicle_model]) if params[:vehicle_model].present?
-    @bcdropdownsearch = @bcdropdownsearch.select('MIN(year_start) AS year_from, MAX(year_end) AS year_to')
+    @bcdropdownsearch = @bcdropdownsearch.select('DISTINCT vehicle_year as year_id, vehicle_year')
     render json: @bcdropdownsearch
   end
 
@@ -24,19 +24,10 @@ class BcdropdownsearchsController < ApplicationController
     @bcdropdownsearch = Bcdropdownsearch.where(nil)
     @bcdropdownsearch = @bcdropdownsearch.vehicle_make(params[:vehicle_make]) if params[:vehicle_make].present?
     @bcdropdownsearch = @bcdropdownsearch.vehicle_model(params[:vehicle_model]) if params[:vehicle_model].present?
-    @bcdropdownsearch = @bcdropdownsearch.where("year_start <= ? AND year_end >= ?",params[:vehicle_year], params[:vehicle_year]) if params[:vehicle_year].present?
-    @bcdropdownsearch = @bcdropdownsearch.select('DISTINCT option_1, option_1_desc, category_url')
+    @bcdropdownsearch = @bcdropdownsearch.vehicle_year(params[:vehicle_year]) if params[:vehicle_year].present?
+    @bcdropdownsearch = @bcdropdownsearch.select('DISTINCT vehicle_option as option_id, vehicle_option')
     render json: @bcdropdownsearch
   end
 
-  def bc_group_url
-    @bcdropdownsearch = Bcdropdownsearch.where(nil)
-    @bcdropdownsearch = @bcdropdownsearch.vehicle_make(params[:vehicle_make]) if params[:vehicle_make].present?
-    @bcdropdownsearch = @bcdropdownsearch.vehicle_model(params[:vehicle_model]) if params[:vehicle_model].present?
-    @bcdropdownsearch = @bcdropdownsearch.option_1(params[:option_1]) if params[:option_1].present?
-    @bcdropdownsearch = @bcdropdownsearch.where("year_start <= ? AND year_end >= ?",params[:vehicle_year], params[:vehicle_year]) if params[:vehicle_year].present?
-    @bcdropdownsearch = @bcdropdownsearch.select('DISTINCT category_url')
-    render json: @bcdropdownsearch
-  end
 
 end
