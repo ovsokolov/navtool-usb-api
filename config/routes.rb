@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   namespace :v1 do
     resources :labelconfigs
     resources :navtoolhws
+    resources :navtoolbtls
     resources :navtooldevices
     resources :navtoolsws do
       get 'make', on: :collection
