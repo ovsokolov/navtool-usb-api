@@ -53,6 +53,43 @@ module V1
       render json: navtooldevice
     end
 
+    def registerdevice
+      mcu_serial = params[:mcu_id]
+      if Navtooldevice.exists?(mcu_serial: mcu_serial)
+        puts "Exists"
+        navtooldevice = Navtooldevice.find(mcu_serial)
+        attr_hash = {"mfg_id"=>params[:mfg_id],
+                     "sw_id"=>params[:sw_id],
+                     "sw_build"=>params[:sw_build],
+                     "vehicle_make" => params[:vehicle_make],
+                     "vehicle_model" => params[:vehicle_model],
+                     "updated_by" => 9,
+                     "update_date" => Time.now.strftime("%m/%d/%Y"),
+                     "total_updates" => navtooldevice.total_updates + 1
+                     }
+        navtooldevice.update_attributes(attr_hash)
+        render json: navtooldevice
+      else
+        puts "Not exists"
+        mcu_label = "#{params[:mfg_id]}-#{Time.now.strftime("%y%m%d")}-#{Time.now.strftime("%H%M%S")}"
+        Navtooldevice.create(:mfg_id => params[:mfg_id],
+                             :mcu_serial => params[:mcu_id],
+                             :sw_id => params[:sw_id],
+                             :sw_build => params[:sw_build],
+                             :vehicle_make => params[:vehicle_make],
+                             :vehicle_model => params[:vehicle_model],
+                             :registered_by => 9,
+                             :registration_date => Time.now.strftime("%m/%d/%Y"),
+                             :registration_time => Time.now.strftime("%H:%M:%S"),
+                             :label_serial => mcu_label,
+                             :total_updates => 0,
+                             :sw_feature_cnt => 0,
+                             :customer_data => "")
+        navtooldevice = Navtooldevice.find(mcu_serial)
+        render json: navtooldevice
+      end
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_navtooldevice
