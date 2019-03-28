@@ -71,7 +71,17 @@ module V1
       @navtoolsw = @navtoolsw.mfg_id(params[:mfg_id]) if params[:mfg_id].present?
       @navtoolsw = @navtoolsw.sw_id(params[:sw_id]) if params[:sw_id].present?
       @navtoolsw = @navtoolsw.sw_build(params[:sw_build]) if params[:sw_build].present?
+      @navtoolsw = @navtoolsw.vehicle_make(params[:vehicle_make]) if params[:vehicle_make].present?
+      @navtoolsw = @navtoolsw.vehicle_model(params[:vehicle_model]) if params[:vehicle_model].present?
       render json: @navtoolsw
+    end
+
+    def hdmilist
+      @hdmidevice = Hdmidevice.where(nil)
+      @hdmidevice = @hdmidevice.mfg_id(params[:mfg_id]) if params[:mfg_id].present?
+      @hdmidevice = @hdmidevice.sw_id(params[:sw_id]) if params[:sw_id].present?
+      @hdmidevice = @hdmidevice.sw_build(params[:sw_build]) if params[:sw_build].present?
+      render json: @hdmidevice
     end
 
     def ftpload

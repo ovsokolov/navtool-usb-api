@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       get 'make', on: :collection
       get 'model', on: :collection
       get 'sw', on: :collection
+      get 'hdmilist', on: :collection
     end
 
     get 'ftpload' => 'navtoolsws#ftpload'
