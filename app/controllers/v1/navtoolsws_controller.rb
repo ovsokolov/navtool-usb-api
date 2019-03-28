@@ -68,6 +68,7 @@ module V1
 
     def sw
       @navtoolsw = Navtoolsw.where(nil)
+      @navtoolsw = @navtoolsw.active_sw
       @navtoolsw = @navtoolsw.mfg_id(params[:mfg_id]) if params[:mfg_id].present?
       @navtoolsw = @navtoolsw.sw_id(params[:sw_id]) if params[:sw_id].present?
       @navtoolsw = @navtoolsw.sw_build(params[:sw_build]) if params[:sw_build].present?
