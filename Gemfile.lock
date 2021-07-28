@@ -61,12 +61,12 @@ GEM
       mini_mime (>= 0.1.1)
     method_source (1.0.0)
     mini_mime (1.1.0)
+    mini_portile2 (2.5.3)
     minitest (5.14.4)
     mysql2 (0.4.10)
     nio4r (2.5.7)
-    nokogiri (1.11.7-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.11.7-x86_64-linux)
+    nokogiri (1.11.7)
+      mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
     pg (1.2.3)
     puma (3.12.6)
@@ -124,8 +124,7 @@ GEM
     websocket-extensions (0.1.5)
 
 PLATFORMS
-  x86_64-darwin-20
-  x86_64-linux
+  ruby
 
 DEPENDENCIES
   byebug
@@ -142,4 +141,4 @@ DEPENDENCIES
   tzinfo-data
 
 BUNDLED WITH
-   2.2.24
+   2.1.4
