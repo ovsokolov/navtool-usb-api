@@ -90,6 +90,15 @@ module V1
       end
     end
 
+
+    def setimageflag
+        mcu_serial = params[:mcu_id]
+        navtooldevice = Navtooldevice.find(mcu_serial)
+        attr_hash = {"image_flash"=>1}
+        navtooldevice.update_attributes(attr_hash)
+        render json: navtooldevice
+    end
+
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_navtooldevice
