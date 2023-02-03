@@ -26,6 +26,7 @@ group :development, :test do
   gem 'sqlite3'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'figaro'
 end
 
 group :development do
@@ -42,5 +43,4 @@ group :production do
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'mysql2', '~> 0.5.5'
-gem 'figaro'
 gem 'rack-cors', :require => 'rack/cors'
