@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
-ruby "3.2.0"
-
+ruby "3.2.4"
+gem 'nio4r', '~> 2.7'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
+gem 'rails', '~> 7.1'
+# psych/net-ftp are bundled with Ruby; keep only if explicitly needed.
 gem 'psych', '< 4'
 gem 'net-ftp'
 
 # Use Puma as the app server
-gem 'puma', '~> 3.7'
+gem 'puma', '~> 6.4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -23,10 +24,10 @@ gem 'puma', '~> 3.7'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
-  gem 'sqlite3'
+  gem 'sqlite3', '~> 1.4'
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  #gem 'figaro'
+  gem 'figaro'
 end
 
 group :development do
