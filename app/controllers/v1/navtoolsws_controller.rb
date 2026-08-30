@@ -1,4 +1,3 @@
-require 'net/ftp'
 require 'base64'
 module V1
   class NavtoolswsController < ApplicationController
@@ -88,14 +87,16 @@ module V1
     def ftpload
       sw_id = params[:sw_id]
       navtoolsw = Navtoolsw.find(sw_id)
-      ftp = Net::FTP.new(ENV["FTP_SERVER"])
-      ftp.passive = true
-      ftp.login ENV["FTP_USERNAME"], ENV["FTP_PASSWORD"]
-
-      files = ftp.chdir(navtoolsw.sw_path)
-      file = ftp.getbinaryfile(navtoolsw.sw_filename, nil, navtoolsw.SW_LENGTH)
+      file = FtpDownload.new(
+        host: ENV.fetch("FTP_SERVER"),
+        username: ENV.fetch("FTP_USERNAME"),
+        password: ENV.fetch("FTP_PASSWORD")
+      ).fetch(
+        path: navtoolsw.sw_path,
+        filename: navtoolsw.sw_filename,
+        blocksize: navtoolsw.SW_LENGTH
+      )
       content = Base64.strict_encode64(file)
-      ftp.close
       result = {}
       result['file'] =  content
       result['size'] = navtoolsw.SW_LENGTH
