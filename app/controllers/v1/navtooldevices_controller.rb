@@ -49,7 +49,7 @@ module V1
         experation_date = Time.now + (60*60*24*3) #add 3 days
         attr_hash.merge!({"sw_feature_exp_date"=>experation_date.strftime("%d/%m/%Y")})
       end
-      navtooldevice.update_attributes(attr_hash)
+      navtooldevice.update(attr_hash)
       render json: navtooldevice
     end
 
@@ -67,7 +67,7 @@ module V1
                      "update_date" => Time.now.strftime("%m/%d/%Y"),
                      "total_updates" => navtooldevice.total_updates + 1
                      }
-        navtooldevice.update_attributes(attr_hash)
+        navtooldevice.update(attr_hash)
         render json: navtooldevice
       else
         puts "Not exists"
@@ -95,7 +95,7 @@ module V1
         mcu_serial = params[:mcu_id]
         navtooldevice = Navtooldevice.find(mcu_serial)
         attr_hash = {"image_flash"=>1}
-        navtooldevice.update_attributes(attr_hash)
+        navtooldevice.update(attr_hash)
         render json: navtooldevice
     end
 
